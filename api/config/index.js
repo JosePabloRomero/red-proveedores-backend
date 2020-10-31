@@ -5,6 +5,11 @@ if (process.env.NODE_ENV == 'dev') {
     process.env.HOST_DB = 'localhost';
     process.env.DB = 'red_proveedores';
     process.env.PASSWORD_DB = 'root';
+    process.env.PORT_DB = 5432;   
+} else if (process.env.NODE_ENV == "production") {
+    process.env.USER_DB = "";
+    process.env.HOST_DB = "";
+    process.env.DB = "";
+    process.env.PASSWORD_DB = "";
     process.env.PORT_DB = 5432;
-    console.log();
 }
