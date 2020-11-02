@@ -1,6 +1,21 @@
+const ServicePostgres = require('../services/postgres')
+const _ServicePg = new ServicePostgres()
 const methods = {
-    getProveedores(request, response) {
-        response.send("Endpoint GET Proveedores");
+    async getProveedores(request, response) {
+        
+            const sql = 'SELECT * FROM proveedores';
+            let responseDB = await _ServicePg.execute(sql);
+            let rowCount = responseDB.rowCount
+            let rows = responseDB.rows
+
+            let responseJSON = {}
+            responseJSON.ok =true
+            responseJSON.message = 'Users ok'
+            responseJSON.info = rows
+            responseJSON.metainfo = {total:rowCount};
+            
+            response.send(responseJSON);
+            
     },
     saveProveedor(request, response) {
         response.send("Endpoint POST Proveedor");
