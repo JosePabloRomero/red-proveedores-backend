@@ -1,6 +1,6 @@
+require('./config');
 const express = require('express');
 const routes = require('./routes/routes');
-require('./config');
 
 const app = express();
 app.use(express.json());
