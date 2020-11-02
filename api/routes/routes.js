@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controladorUsuarios = require('../controllers/usuarios.controller');
 const controladorProveedores = require('../controllers/proveedores.controller');
+const controladorAdministradores = require('../controllers/administradores.controller');
 const controladorVentas = require('../controllers/ventas.controller');
 const controladorCategorias = require('../controllers/categorias.controller');
 const controladorCatalogos = require('../controllers/catalogos.controller');
@@ -22,6 +23,12 @@ router
     .post('/api/v1/proveedores', controladorProveedores.saveProveedor)
     .put('/api/v1/proveedores/:id', controladorProveedores.updateProveedor)
     .delete('/api/v1/proveedores/:id', controladorProveedores.deleteProveedor);
+
+router
+    .get('/api/v1/administradores', controladorAdministradores.getAdministradores)
+    .post('/api/v1/administradores', controladorAdministradores.saveAdministrador)
+    .put('/api/v1/administradores/:id', controladorAdministradores.updateAdministrador)
+    .delete('/api/v1/administradores/:id', controladorAdministradores.deleteAdministrador);
 
 router
     .get('/api/v1/ventas', controladorVentas.getVentas)
