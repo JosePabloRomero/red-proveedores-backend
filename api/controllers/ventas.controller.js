@@ -104,7 +104,7 @@ const updateVenta = async (request, response) => {
  */
 const deleteVenta = async (request, response) => {
   try {
-    const sql = "DELETE FROM ventas WHERE id=$1";
+    const sql = "DELETE FROM ventas WHERE id=$1;";
     let id = request.params.id;
     let responseDB = await _servicePg.execute(sql, [id]);
     let rowCount = responseDB.rowCount;

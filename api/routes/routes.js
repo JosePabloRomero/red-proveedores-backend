@@ -4,6 +4,7 @@ const controladorUsuarios = require('../controllers/usuarios.controller');
 const controladorProveedores = require('../controllers/proveedores.controller');
 const controladorVentas = require('../controllers/ventas.controller');
 const controladorCategorias = require('../controllers/categorias.controller');
+const controladorCatalogos = require('../controllers/catalogos.controller');
 
 router.get('/api/v1', (request, response) => {
     response.send("Hola Mundo");
@@ -32,5 +33,11 @@ router
     .post('/api/v1/categorias', controladorCategorias.saveCategoria)
     .put('/api/v1/categorias/:id', controladorCategorias.updateCategoria)
     .delete('/api/v1/categorias/:id', controladorCategorias.deleteCategoria);
+
+router
+    .get('/api/v1/catalogos', controladorCatalogos.getCatalogos)
+    .post('/api/v1/catalogos', controladorCatalogos.saveCatalogo)
+    .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
+    .delete('/api/v1/catalogos/:id', controladorCatalogos.deleteCatalogo);
 
 module.exports = router;
