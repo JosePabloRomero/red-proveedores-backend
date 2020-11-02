@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-
+console.log(process.env.USER_DB)
 class ServicePostgres {
     constructor() {
         this.pool = new Pool({

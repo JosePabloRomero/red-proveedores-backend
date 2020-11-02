@@ -16,11 +16,7 @@ const getVentas = async (request, response) => {
       GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido;`;
     let responseDB = await _servicePg.execute(sql);
     let rowCount = responseDB.rowCount;
-    /* let rows = responseDB.rows;  
-    rows = rows.map((x) => {
-      delete x.clave;
-      return x;
-    }); */
+    let rows = responseDB.rows;     
 
     let responseJSON = {};
     responseJSON.ok = true;

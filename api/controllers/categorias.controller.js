@@ -7,12 +7,7 @@ const getCategorias = async (request, response) => {
       `SELECT * FROM categorias;`;
     let responseDB = await _servicePg.execute(sql);
     let rowCount = responseDB.rowCount;
-    /* let rows = responseDB.rows;  
-    rows = rows.map((x) => {
-      delete x.clave;
-      return x;
-    }); */
-
+    let rows = responseDB.rows;  
     let responseJSON = {};
     responseJSON.ok = true;
     responseJSON.message = "Categorías Ok";
