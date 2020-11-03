@@ -7,6 +7,7 @@ const controladorVentas = require('../controllers/ventas.controller');
 const controladorCategorias = require('../controllers/categorias.controller');
 const controladorCatalogos = require('../controllers/catalogos.controller');
 const controladorProductos = require('../controllers/productos.controller');
+const controladorAutenticacion = require('../controllers/auth.controller');
 
 router.get('/api/v1', (request, response) => {
     response.send("Hola Mundo");
@@ -45,6 +46,7 @@ router
 router
     .get('/api/v1/catalogos', controladorCatalogos.getCatalogos)
     .post('/api/v1/catalogos', controladorCatalogos.saveCatalogo)
+    .put('/api/v1/catalogos/catalogosPDF', controladorCatalogos.saveCatalogoPDF)
     .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
     .delete('/api/v1/catalogos/:id', controladorCatalogos.deleteCatalogo);
 
@@ -52,6 +54,10 @@ router
     .get('/api/v1/Productos', controladorProductos.getProductos)
     .post('/api/v1/Productos', controladorProductos.saveProductos)
     .put('/api/v1/Productos/:id', controladorProductos.updateProductos)
-    .delete('/api/v1/Productos/:id', controladorProductos.deleteProductos);    
+    .delete('/api/v1/Productos/:id', controladorProductos.deleteProductos); 
+    
+router 
+    .post('/api/v1/login/:id', controladorAutenticacion.login)
+    .get('/api/v1/auth', controladorAutenticacion.validToken);
 
 module.exports = router;

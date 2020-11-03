@@ -56,7 +56,7 @@ const updateCategoria = async (request, response) => {
   try {
     let id = request.params.id;
     let sql =
-      "UPDATE public.categorias SET nombre=$1;";
+      "UPDATE public.categorias SET nombre=$1 where id=$2;";
     let body = request.body;
     let values = [
       body.nombre,

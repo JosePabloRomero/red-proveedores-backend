@@ -36,9 +36,10 @@ const getVentas = async (request, response) => {
 
 const saveVenta = async (request, response) => {
   try {
-    let sql =
-      "INSERT INTO public.ventas (id_estado, id_proveedor, id_usuario, fecha)";
-    sql += " VALUES($1, $2, $3, $4);";
+    let sql = `INSERT INTO public.ventas
+    (id_estado, id_proveedor, id_usuario, fecha)
+    VALUES($1, $2, $3, $4);
+    `
     let body = request.body;
     let values = [
       body.id_estado,
@@ -54,6 +55,7 @@ const saveVenta = async (request, response) => {
     response.status(201).send(responseJSON);
   } catch (error) {
     let responseJSON = {};
+    console.log(error)
     responseJSON.ok = false;
     responseJSON.message = "Error creando la venta.";
     responseJSON.info = error;
@@ -69,7 +71,7 @@ const updateVenta = async (request, response) => {
   try {
     let id = request.params.id;
     let sql =
-      "UPDATE public.ventas SET id_estado=$1, id_proveedor=$2, id_usuario=$3, fecha=$4;";
+      "UPDATE public.ventas SET id_estado=$1, id_proveedor=$2, id_usuario=$3, fecha=$4 WHERE id =$5;";
     let body = request.body;
     let values = [
       body.id_estado,
@@ -86,6 +88,7 @@ const updateVenta = async (request, response) => {
     response.send(responseJSON);
   } catch (error) {
     let responseJSON = {};
+    console.log(error)
     responseJSON.ok = false;
     responseJSON.message = "Error actualizando la venta.";
     responseJSON.info = error;

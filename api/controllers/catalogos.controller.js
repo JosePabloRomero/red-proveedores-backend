@@ -12,7 +12,7 @@ const getCatalogos = async (request, response) => {
       GROUP BY catalogos.id, proveedores.nombre, proveedores.apellido;`;
     let responseDB = await _servicePg.execute(sql);
     let rowCount = responseDB.rowCount;
-    let rows = responseDB.rows;      
+    let rows = responseDB.rows;
 
     let responseJSON = {};
     responseJSON.ok = true;
@@ -49,6 +49,41 @@ const saveCatalogo = async (request, response) => {
     let responseJSON = {};
     responseJSON.ok = false;
     responseJSON.message = "Error creando el catálogo.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+/**
+ *
+ * @param {*} request
+ * @param {Response} response
+ */
+const saveCatalogoPDF = async (request, response) => {
+  try {
+    let archivo = request.files.fileUpload;
+    let name = archivo.name;
+    let ext = name.split('.');
+    ext = ext[ext.length - 1];
+    if (ext === 'pdf') {
+      await archivo.mv(`docs/${archivo.name}`);
+      let responseJSON = {};
+      responseJSON.ok = true;
+      responseJSON.message = "Archivo guardado con exito";
+      responseJSON.info = archivo.name;
+      response.status(201).send(responseJSON);
+    } else {
+      let responseJSON = {};
+      responseJSON.ok = false;
+      responseJSON.message = "El archivo solo puede ser un pdf";
+      responseJSON.info = archivo.name;
+      response.status(400).send(responseJSON);
+    }
+
+  } catch (error) {
+    console.log(error)
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error al subir el arhivo del catalogo";
     responseJSON.info = error;
     response.status(400).send(responseJSON);
   }
@@ -109,4 +144,4 @@ const deleteCatalogo = async (request, response) => {
   }
 };
 
-module.exports = { getCatalogos, saveCatalogo, updateCatalogo, deleteCatalogo };
+module.exports = { getCatalogos, saveCatalogo, saveCatalogoPDF, updateCatalogo, deleteCatalogo };
