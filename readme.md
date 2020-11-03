@@ -13,4 +13,6 @@
 # Informacion Importante
 
 1. Se debe de hacer cambios en la base de datos, ya que al construir la base de datos, no agregamos la eliminacion en cascada. Por lo tanto hay usuarios que no pueden ser eliminados debido a esto.
-2. El backup de la base de datos, está en la carpeta util, Para hacer el backup desde postgres, deben de crear una nueva base de datos, luego en esta le dan click y buscan el apartado "RESTORE", luego en "Filename" seleccionan los tres punticos y luego seleccionan el backup. Finalmente en "Role name" eligen la opción "postgres"
+2. El backup de la base de datos, está en la carpeta util, Para hacer el backup desde postgres, deben de crear una nueva base de datos, luego en esta le dan click y buscan el apartado "RESTORE", luego en "Filename" seleccionan los tres punticos y luego seleccionan el backup. Finalmente en "Role name" eligen la opción "postgres".
+3. En el login, con los distintos parametros del 1 al 3, se puede escoger el rol (usuario, proveedor, administrador) respectivamente
+    -Ver auth.controllers
