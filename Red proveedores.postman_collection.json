@@ -12,18 +12,24 @@
 				{
 					"name": "Obtener Usuarios",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/usuarios",
-							"protocol": "http",
+							"raw": "{{url}}/usuarios",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"usuarios"
 							]
 						}
@@ -33,6 +39,16 @@
 				{
 					"name": "Agregar Usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -45,15 +61,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/usuarios",
-							"protocol": "http",
+							"raw": "{{url}}/usuarios",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"usuarios"
 							]
 						}
@@ -63,6 +75,16 @@
 				{
 					"name": "Editar Usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -75,15 +97,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/usuarios/3",
-							"protocol": "http",
+							"raw": "{{url}}/usuarios/3",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"usuarios",
 								"3"
 							]
@@ -94,18 +112,24 @@
 				{
 					"name": "Eliminar Usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/usuarios/2",
-							"protocol": "http",
+							"raw": "{{url}}/usuarios/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"usuarios",
 								"2"
 							]
@@ -122,18 +146,24 @@
 				{
 					"name": "Obtener Proveedores",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/proveedores/",
-							"protocol": "http",
+							"raw": "{{url}}/proveedores/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"proveedores",
 								""
 							]
@@ -144,6 +174,16 @@
 				{
 					"name": "Agregar Proveedor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -156,15 +196,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/proveedores/",
-							"protocol": "http",
+							"raw": "{{url}}/proveedores/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"proveedores",
 								""
 							]
@@ -175,6 +211,16 @@
 				{
 					"name": "Editar Proveedor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -187,15 +233,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/proveedores/1",
-							"protocol": "http",
+							"raw": "{{url}}/proveedores/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"proveedores",
 								"1"
 							]
@@ -206,18 +248,24 @@
 				{
 					"name": "Eliminar Proveedor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/proveedores/2",
-							"protocol": "http",
+							"raw": "{{url}}/proveedores/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"proveedores",
 								"2"
 							]
@@ -234,18 +282,24 @@
 				{
 					"name": "Obtener administradores",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/administradores/",
-							"protocol": "http",
+							"raw": "{{url}}/administradores/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"administradores",
 								""
 							]
@@ -256,6 +310,16 @@
 				{
 					"name": "Agregar Administrador",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -268,15 +332,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/administradores/",
-							"protocol": "http",
+							"raw": "{{url}}/administradores/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"administradores",
 								""
 							]
@@ -287,6 +347,16 @@
 				{
 					"name": "Editar Administrador",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -299,15 +369,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/administradores/2",
-							"protocol": "http",
+							"raw": "{{url}}/administradores/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"administradores",
 								"2"
 							]
@@ -318,18 +384,24 @@
 				{
 					"name": "Eliminar Administrador",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/administradores/1",
-							"protocol": "http",
+							"raw": "{{url}}/administradores/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"administradores",
 								"1"
 							]
@@ -346,18 +418,24 @@
 				{
 					"name": "Obtener categoría",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/categorias/",
-							"protocol": "http",
+							"raw": "{{url}}/categorias/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"categorias",
 								""
 							]
@@ -368,6 +446,16 @@
 				{
 					"name": "Agregar categoría",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -380,15 +468,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/categorias",
-							"protocol": "http",
+							"raw": "{{url}}/categorias",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"categorias"
 							]
 						}
@@ -398,6 +482,16 @@
 				{
 					"name": "Editar categoría",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -410,15 +504,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/categorias/2",
-							"protocol": "http",
+							"raw": "{{url}}/categorias/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"categorias",
 								"2"
 							]
@@ -429,18 +519,24 @@
 				{
 					"name": "Eliminar categoría",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/categorias/2",
-							"protocol": "http",
+							"raw": "{{url}}/categorias/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"categorias",
 								"2"
 							]
@@ -457,19 +553,25 @@
 				{
 					"name": "Obtener productos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/Productos",
-							"protocol": "http",
+							"raw": "{{url}}/productos",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
-								"Productos"
+								"productos"
 							]
 						}
 					},
@@ -478,6 +580,16 @@
 				{
 					"name": "Agregar productos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -490,16 +602,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/Productos",
-							"protocol": "http",
+							"raw": "{{url}}/productos",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
-								"Productos"
+								"productos"
 							]
 						}
 					},
@@ -508,6 +616,16 @@
 				{
 					"name": "Actualizar productos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -520,15 +638,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/productos/1",
-							"protocol": "http",
+							"raw": "{{url}}/productos/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"productos",
 								"1"
 							]
@@ -539,18 +653,24 @@
 				{
 					"name": "Eliminar produto",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/productos/1",
-							"protocol": "http",
+							"raw": "{{url}}/productos/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"productos",
 								"1"
 							]
@@ -567,18 +687,24 @@
 				{
 					"name": "Obtener ventas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/ventas/",
-							"protocol": "http",
+							"raw": "{{url}}/ventas/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"ventas",
 								""
 							]
@@ -589,6 +715,16 @@
 				{
 					"name": "Agregar venta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -601,15 +737,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/ventas/",
-							"protocol": "http",
+							"raw": "{{url}}/ventas/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"ventas",
 								""
 							]
@@ -620,6 +752,16 @@
 				{
 					"name": "Editar venta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -632,15 +774,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/ventas/11",
-							"protocol": "http",
+							"raw": "{{url}}/ventas/11",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"ventas",
 								"11"
 							]
@@ -651,18 +789,24 @@
 				{
 					"name": "Eliminar venta",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/ventas/1",
-							"protocol": "http",
+							"raw": "{{url}}/ventas/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"ventas",
 								"1"
 							]
@@ -679,18 +823,24 @@
 				{
 					"name": "Obtener catálogos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/catalogos/",
-							"protocol": "http",
+							"raw": "{{url}}/catalogos/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"catalogos",
 								""
 							]
@@ -701,6 +851,16 @@
 				{
 					"name": "Agregar catálogo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -713,15 +873,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/catalogos/",
-							"protocol": "http",
+							"raw": "{{url}}/catalogos/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"catalogos",
 								""
 							]
@@ -732,6 +888,16 @@
 				{
 					"name": "Agregar cátalogo PDF",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -745,15 +911,11 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/catalogos/catalogosPDF",
-							"protocol": "http",
+							"raw": "{{url}}/catalogos/catalogosPDF",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"catalogos",
 								"catalogosPDF"
 							]
@@ -764,6 +926,16 @@
 				{
 					"name": "Editar catálogo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -776,15 +948,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/catalogos/1",
-							"protocol": "http",
+							"raw": "{{url}}/catalogos/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"catalogos",
 								"1"
 							]
@@ -795,18 +963,24 @@
 				{
 					"name": "Eliminar catálogo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3002/api/v1/catalogos/1",
-							"protocol": "http",
+							"raw": "{{url}}/catalogos/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "3002",
 							"path": [
-								"api",
-								"v1",
 								"catalogos",
 								"1"
 							]
@@ -822,7 +996,32 @@
 			"item": [
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5cfcc0a4-21de-4dca-a435-ac8113d482f4",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"let token = jsonData.info;\r",
+									"pm.environment.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -854,13 +1053,25 @@
 				},
 				{
 					"name": "Auth token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "440e7097-6896-4c95-9535-1e11bedbcdf5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJQYXVsaW5hIiwiYXBlbGxpZG8iOiJWZWxhc3F1ZXoiLCJlbWFpbCI6InBhdWxpQGFhYS5jb20iLCJpYXQiOjE2MDQzNjIyOTYsImV4cCI6MTYwNDM2NTg5Nn0.4cG7yIzAyR1_11642gQVmoluByiWNLFHnB3UoD_Uwso",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -886,73 +1097,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Obtener usuario ingresado",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3002/usuario-ingresado",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3002",
-					"path": [
-						"usuario-ingresado"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Ingresar usuario",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"001\",\r\n    \"rol\": \"proveedor\",\r\n    \"nombre\": \"Saltin\",\r\n    \"apellido\": \"Noel\"      \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3002/usuario-ingresado",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3002",
-					"path": [
-						"usuario-ingresado"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cerrar sesion",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3002/usuario-ingresado/001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3002",
-					"path": [
-						"usuario-ingresado",
-						"001"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

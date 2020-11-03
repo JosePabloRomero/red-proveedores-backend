@@ -8,6 +8,7 @@
     -Postgres [https://node-postgres.com] `npm install pg`
     -Nodemon `npm i nodemon` Permite recargar automaticamente el api.
     -jwt `npm install jsonwebtoken`
+    -cors `npm i cors`
 4. Crear el server que genere el API
 
 # Informacion Importante
