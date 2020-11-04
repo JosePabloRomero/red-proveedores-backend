@@ -1026,7 +1026,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"clave\": \"hola\"\r\n}",
+							"raw": "{\r\n    \"email\": \"noel@gmail.com\",\r\n    \"clave\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1034,7 +1034,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3002/api/v1/login/1",
+							"raw": "http://localhost:3002/api/v1/login/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1044,7 +1044,7 @@
 								"api",
 								"v1",
 								"login",
-								"1"
+								"2"
 							]
 						},
 						"description": "Login para todos los usuarios, el id representa el rol"
