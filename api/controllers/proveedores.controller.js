@@ -32,6 +32,30 @@ const methods = {
         }
 
     },
+     /**
+     * Save user
+     * @param {Request} request
+     * @param {Response} response 
+     */
+    async getIdentificaciones(request, response) {
+        try {
+            const sql = 'SELECT * FROM identificaciones';
+            let responseDB = await _ServicePg.execute(sql);           
+            let rows = responseDB.rows           
+            let responseJSON = {};
+            responseJSON.ok = true;
+            responseJSON.message = 'Identificaciones ok';
+            responseJSON.info = rows;            
+            response.status(201).send(responseJSON);
+        } catch (error) {
+            let responseJSON = {};
+            responseJSON.ok = false;
+            responseJSON.message = "Error al obtener las identificaciones"
+            responseJSON.info = error
+            response.status(400).send(responseJSON);
+        }
+
+    },
     /**
      * Save user
      * @param {Request} request
@@ -51,6 +75,7 @@ const methods = {
             responseJSON.info = body;
             response.send(responseJSON);
         } catch (error) {
+            console.log(error)
             let responseJSON = {};
             responseJSON.ok = false;
             responseJSON.message = "Error al guardar el proveedor"

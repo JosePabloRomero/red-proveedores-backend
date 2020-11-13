@@ -15,6 +15,10 @@ router.get('/api/v1', (request, response) => {
 
 
 router
+    //Rutas que no necesitan de estar ingresado
+    .get('/api/v1/identificaciones', controladorProveedores.getIdentificaciones)    
+    .post('/api/v1/proveedores', controladorProveedores.saveProveedor)
+    .post('/api/v1/usuarios', controladorUsuarios.saveUsuario)
     //Login
     .post('/api/v1/login/:id', controladorAutenticacion.login)
     .use('/', controladorAutenticacion.middleware)
@@ -22,13 +26,13 @@ router
     
     //usuarios
     .get('/api/v1/usuarios', controladorUsuarios.getUsuarios)
-    .post('/api/v1/usuarios', controladorUsuarios.saveUsuario)
+    //.post('/api/v1/usuarios', controladorUsuarios.saveUsuario)
     .put('/api/v1/usuarios/:id', controladorUsuarios.updateUsuario)
     .delete('/api/v1/usuarios/:id', controladorUsuarios.deleteUsuario)
 
     //proveedores
-    .get('/api/v1/proveedores', controladorProveedores.getProveedores)
-    .post('/api/v1/proveedores', controladorProveedores.saveProveedor)
+    .get('/api/v1/proveedores', controladorProveedores.getProveedores)    
+    //.post('/api/v1/proveedores', controladorProveedores.saveProveedor)
     .put('/api/v1/proveedores/:id', controladorProveedores.updateProveedor)
     .delete('/api/v1/proveedores/:id', controladorProveedores.deleteProveedor)
 
