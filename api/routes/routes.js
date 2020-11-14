@@ -8,6 +8,11 @@ const controladorCategorias = require('../controllers/categorias.controller');
 const controladorCatalogos = require('../controllers/catalogos.controller');
 const controladorProductos = require('../controllers/productos.controller');
 const controladorAutenticacion = require('../controllers/auth.controller');
+const controladorEstados = require('../controllers/estados.controller');
+const controladorIdentificaciones = require('../controllers/identificaciones.controller');
+const controladorResenas = require('../controllers/resenas.controller');
+const controladorCategorias_Productos = require('../controllers/categorias_productos.controller');
+const controladorCategorias_Proveedores = require('../controllers/categorias_proveedores.controller');
 
 router.get('/api/v1', (request, response) => {
     response.send("Hola Mundo");
@@ -61,13 +66,36 @@ router
     .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
     .delete('/api/v1/catalogos/:id', controladorCatalogos.deleteCatalogo)
 
+    //Estados
+    .get('/api/v1/estados', controladorEstados.getEstados)
+    .post('/api/v1/estados', controladorEstados.saveEstados)
+    .put('/api/v1/estados/:id', controladorEstados.updateEstados)
+    .delete('/api/v1/estados/:id', controladorEstados.deleteEstados)
+
+    //Identificaciones
+    .get('/api/v1/identificaciones', controladorIdentificaciones.getIdentificaciones)
+    .post('/api/v1/identificaciones', controladorIdentificaciones.saveIdentificaciones)
+    .put('/api/v1/identificaciones/:id', controladorIdentificaciones.updateIdentificaciones)
+    .delete('/api/v1/identificaciones/:id', controladorIdentificaciones.deleteIdentificaciones)
+
+    //Reseñas
+    .get('/api/v1/resenas', controladorResenas.getResenas)
+    .post('/api/v1/resenas', controladorResenas.saveResenas)
+    .put('/api/v1/resenas/:id', controladorResenas.updateResenas)
+    .delete('/api/v1/resenas/:id', controladorResenas.deleteResenas)
+
+    //Categorias_Productos
+    .get('/api/v1/categorias_productos', controladorCategorias_Productos.getCategorias_productos)
+
+    //Categorias_Productos
+    .get('/api/v1/categorias_proveedores', controladorCategorias_Proveedores.getCategorias_proveedores)
+
     //Productos
     .get('/api/v1/Productos', controladorProductos.getProductos)
     .post('/api/v1/Productos', controladorProductos.saveProductos)
     .put('/api/v1/Productos/:id', controladorProductos.updateProductos)
     .delete('/api/v1/Productos/:id', controladorProductos.deleteProductos)
     .use('/', controladorAutenticacion.notFound);
-
 
 
 module.exports = router;
