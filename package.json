@@ -14,6 +14,17 @@
     "express-fileupload": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.6",
-    "pg": "^8.4.2"
-  }
+    "pg": "^8.5.1"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosePabloRomero/red-proveedores-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JosePabloRomero/red-proveedores-backend/issues"
+  },
+  "homepage": "https://github.com/JosePabloRomero/red-proveedores-backend#readme"
 }
