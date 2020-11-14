@@ -43,7 +43,7 @@ router
     .delete('/api/v1/administradores/:id', controladorAdministradores.deleteAdministrador)
 
     //Ventas
-    .get('/api/v1/ventas', controladorVentas.getVentas)
+    .get('/api/v1/ventas/:id', controladorVentas.getVentas)
     .post('/api/v1/ventas', controladorVentas.saveVenta)
     .put('/api/v1/ventas/:id', controladorVentas.updateVenta)
     .delete('/api/v1/ventas/:id', controladorVentas.deleteVenta)
