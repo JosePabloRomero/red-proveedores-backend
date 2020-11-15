@@ -32,20 +32,20 @@ const methods = {
         }
 
     },
-     /**
-     * Save user
-     * @param {Request} request
-     * @param {Response} response 
-     */
+    /**
+    * Save user
+    * @param {Request} request
+    * @param {Response} response 
+    */
     async getIdentificaciones(request, response) {
         try {
             const sql = 'SELECT * FROM identificaciones';
-            let responseDB = await _ServicePg.execute(sql);           
-            let rows = responseDB.rows           
+            let responseDB = await _ServicePg.execute(sql);
+            let rows = responseDB.rows
             let responseJSON = {};
             responseJSON.ok = true;
             responseJSON.message = 'Identificaciones ok';
-            responseJSON.info = rows;            
+            responseJSON.info = rows;
             response.status(201).send(responseJSON);
         } catch (error) {
             let responseJSON = {};
@@ -135,7 +135,80 @@ const methods = {
             responseJSON.info = error
             response.status(400).send(responseJSON);
         }
+    },
+
+    /**
+     * Buscar proveedor especifico 
+     * @param {Request} request
+     * @param {Response} response 
+     */
+    async buscarProveedorEspecifico(request, response) {
+        try {
+
+            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido
+            from proveedores where proveedores.nombre = $1 and proveedores.apellido = $2 ;`;
+            let nombre = request.query.nombre;
+            let apellido = request.query.apellido;
+            let values = [nombre, apellido];
+            let responseDB = await _ServicePg.execute(sql, values);
+            let rowCount = responseDB.rowCount;
+            let rows = responseDB.rows;
+
+            let responseJSON = {};
+            responseJSON.ok = true;
+            responseJSON.message = "Proveedor encontrado";
+            responseJSON.info = rows;
+            responseJSON.metainfo = { total: rowCount };
+            response.send(responseJSON);
+        } catch (error) {
+            console.log(error);
+            let responseJSON = {};
+            responseJSON.ok = false;
+            responseJSON.message = "Error al buscar el proveedor"
+            responseJSON.info = error
+            response.status(400).send(responseJSON);
+        }
+    },
+
+    /**
+   * Buscar proveedores por categoria 
+   * @param {Request} request
+   * @param {Response} response 
+   */
+    async buscarProveedorPorCategoria(request, response) {
+        try {
+            let id_categoria = request.params.id;
+            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido , proveedores.contacto , proveedores.email
+            from proveedores inner join categorias_proveedores 
+            on proveedores.id = categorias_proveedores.id_proveedor
+            inner join categorias on categorias.id = categorias_proveedores.id_categoria
+            where categorias_proveedores.id_categoria = $1 ;`;
+
+            let values = [
+                id_categoria
+            ];
+            let responseDB = await _ServicePg.execute(sql, values);
+            let rowCount = responseDB.rowCount;
+            let rows = responseDB.rows;
+
+            let responseJSON = {};
+            responseJSON.ok = true;
+            responseJSON.message = "Se encontro el proveedor por su categoria especifica";
+            responseJSON.info = rows;
+            responseJSON.metainfo = { total: rowCount };
+            response.send(responseJSON);
+        } catch (error) {
+            console.log(error);
+            let responseJSON = {};
+            responseJSON.ok = false;
+            responseJSON.message = "Error obteniendo proveedor por categoria.";
+            responseJSON.info = error;
+            response.status(400).send(responseJSON);
+        }
     }
-}
+
+
+};
+
 
 module.exports = methods;

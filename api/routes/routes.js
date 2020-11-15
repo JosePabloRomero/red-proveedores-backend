@@ -40,6 +40,8 @@ router
     //.post('/api/v1/proveedores', controladorProveedores.saveProveedor)
     .put('/api/v1/proveedores/:id', controladorProveedores.updateProveedor)
     .delete('/api/v1/proveedores/:id', controladorProveedores.deleteProveedor)
+    .get('/api/v1/proveedor_especifico/', controladorProveedores.buscarProveedorEspecifico)
+    .get('/api/v1/proveedores_categoria/:id', controladorProveedores.buscarProveedorPorCategoria)
 
     //Administradores
     .get('/api/v1/administradores', controladorAdministradores.getAdministradores)
