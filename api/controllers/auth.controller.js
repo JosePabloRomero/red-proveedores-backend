@@ -12,7 +12,7 @@ const login = async (request, response) => {
     responseJSON.ok = true;
     try {
         let id = request.params.id
-        let sql = "SELECT id, nombre, apellido, email "
+        let sql = "SELECT nombre, apellido, email, descripcion, direccion, contacto "
         switch (id) {
             //Caso 1: rol: usuario
             case "1":
