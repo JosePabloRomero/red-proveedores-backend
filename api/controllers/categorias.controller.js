@@ -100,7 +100,9 @@ const deleteCategoria = async (request, response) => {
     responseJSON.message = "Error eliminando la categoría.";
     responseJSON.info = error;
     response.status(400).send(responseJSON);
-  }
+  }  
 };
+
+
 
 module.exports = { getCategorias, saveCategoria, updateCategoria, deleteCategoria };
