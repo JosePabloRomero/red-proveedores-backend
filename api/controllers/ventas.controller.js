@@ -2,21 +2,27 @@ const ServicePostgres = require("../services/postgres");
 const _servicePg = new ServicePostgres();
 
 const getVentas = async (request, response) => {
+  let id = request.params.id;
   try {
     const sql =
-      `SELECT estados_venta.nombre AS Estado, 
-      proveedores.nombre AS Nombre_Proveedor, 
-      proveedores.apellido AS Apellido_Proveedor, 
+      `SELECT
+      ventas.id AS id_venta,
+      ventas.fecha AS fecha_venta,
+      estados_venta.nombre AS Estado,
       usuarios.nombre AS Nombre_Cliente, 
       usuarios.apellido AS Apellido_Cliente 
       FROM estados_venta 
       INNER JOIN ventas ON ventas.id_estado = estados_venta.id 
       INNER JOIN proveedores ON proveedores.id = ventas.id_proveedor 
       INNER JOIN usuarios ON usuarios.id = ventas.id_usuario 
-      GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido;`;
-    let responseDB = await _servicePg.execute(sql);
+      WHERE proveedores.id = $1
+      GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido, id_venta, fecha_venta;`;    
+    let values = [
+      id
+    ];    
+    let responseDB = await _servicePg.execute(sql, values);
     let rowCount = responseDB.rowCount;
-    let rows = responseDB.rows;     
+    let rows = responseDB.rows;
 
     let responseJSON = {};
     responseJSON.ok = true;

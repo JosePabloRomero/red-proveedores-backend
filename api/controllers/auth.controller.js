@@ -36,6 +36,7 @@ const login = async (request, response) => {
         let rowCount = responseDB.rowCount
         if (rowCount == 1) {
             let user = responseDB.rows[0];
+            //Este es el rol necesario?
             user.rol = id;
             responseJSON.message = 'El usuario se encuentra en la base de datos';
             responseJSON.info = jwt.createToken(user);

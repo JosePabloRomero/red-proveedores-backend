@@ -48,7 +48,7 @@ router
     .delete('/api/v1/administradores/:id', controladorAdministradores.deleteAdministrador)
 
     //Ventas
-    .get('/api/v1/ventas', controladorVentas.getVentas)
+    .get('/api/v1/ventas/:id', controladorVentas.getVentas)
     .post('/api/v1/ventas', controladorVentas.saveVenta)
     .put('/api/v1/ventas/:id', controladorVentas.updateVenta)
     .delete('/api/v1/ventas/:id', controladorVentas.deleteVenta)
@@ -87,9 +87,10 @@ router
     //Categorias_Productos
     .get('/api/v1/categorias_productos', controladorCategorias_Productos.getCategorias_productos)
 
-    //Categorias_Productos
-    .get('/api/v1/categorias_proveedores', controladorCategorias_Proveedores.getCategorias_proveedores)
 
+    //Categorias_Proveedores
+    .get('/api/v1/categorias_proveedores', controladorCategorias_Proveedores.getCategorias_proveedores)
+    .get('/api/v1/categorias_proveedor/:id', controladorCategorias_Proveedores.categorias_proveedores)
     //Productos
     .get('/api/v1/Productos', controladorProductos.getProductos)
     .post('/api/v1/Productos', controladorProductos.saveProductos)
