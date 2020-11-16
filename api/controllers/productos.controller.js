@@ -113,7 +113,41 @@ const methods = {
             responseJSON.info = error
             response.status(400).send(responseJSON);
         }
-    }
+    },
+     /**
+     * get products
+     * @param {Request} request
+     * @param {Response} response 
+     */
+    async getProductosPorProveedor(request, response) {
+        try {
+
+            const sql = `select productos.id ,productos.nombre , productos.descripcion , productos.precio
+            from productos 
+            inner join catalogos
+            on catalogos.id = productos.id_catalogo
+            inner join proveedores 
+            on proveedores.id = catalogos.id_proveedor
+            where proveedores.id = $1;`;
+            let id = request.params.id;
+            let responseDB = await _ServicePg.execute(sql , [id]);
+            let rowCount = responseDB.rowCount
+            let rows = responseDB.rows
+            let responseJSON = {};
+            responseJSON.ok = true;
+            responseJSON.message = 'products ok';
+            responseJSON.info = rows;
+            responseJSON.metainfo = { total: rowCount };
+            response.status(201).send(responseJSON);
+
+        } catch (error) {
+            let responseJSON = {};
+            responseJSON.ok = false;
+            responseJSON.message = "Error al obtener los productos"
+            responseJSON.info = error
+            response.status(400).send(responseJSON);
+        }
+}
 }
 
 module.exports = methods;
