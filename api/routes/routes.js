@@ -60,6 +60,7 @@ router
     .post('/api/v1/categorias', controladorCategorias.saveCategoria)
     .put('/api/v1/categorias/:id', controladorCategorias.updateCategoria)
     .delete('/api/v1/categorias/:id', controladorCategorias.deleteCategoria)
+    .get('/api/v1/categorias_por_producto/:id', controladorCategorias.getCategorias_Por_Productos)
 
     //Catalogos
     .get('/api/v1/catalogos', controladorCatalogos.getCatalogos)
@@ -95,6 +96,7 @@ router
     //Categorias_Proveedores
     .get('/api/v1/categorias_proveedores', controladorCategorias_Proveedores.getCategorias_proveedores)
     .get('/api/v1/categorias_proveedor/:id', controladorCategorias_Proveedores.categorias_proveedores)
+    
     //Productos
     .get('/api/v1/Productos', controladorProductos.getProductos)
     .get('/api/v1/Productos_Por_Proveedor/:id', controladorProductos.getProductosPorProveedor)

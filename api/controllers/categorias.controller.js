@@ -103,6 +103,37 @@ const deleteCategoria = async (request, response) => {
   }  
 };
 
+const getCategorias_Por_Productos = async (request, response) => {
+  try {
+    const sql =
+      `select categorias.id , categorias.nombre as categoria 
+      from categorias
+      inner join categorias_productos
+      on categorias.id = categorias_productos.id_categoria
+      inner join productos 
+      on productos.id = categorias_productos.id_producto
+      where productos.id = $1;
+      `;
+      let id = request.params.id;
+    let responseDB = await _servicePg.execute(sql , [id]);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;  
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Categorías Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo las categorías.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
 
 
-module.exports = { getCategorias, saveCategoria, updateCategoria, deleteCategoria };
+
+module.exports = { getCategorias, saveCategoria, updateCategoria, deleteCategoria , getCategorias_Por_Productos };
