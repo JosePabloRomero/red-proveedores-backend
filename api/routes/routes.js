@@ -51,6 +51,7 @@ router
 
     //Ventas
     .get('/api/v1/ventas/:id', controladorVentas.getVentas)
+    .get('/api/v1/ventas_en_cola/:id', controladorVentas.getVentasEnCola)    
     .post('/api/v1/ventas', controladorVentas.saveVenta)
     .put('/api/v1/ventas/:id', controladorVentas.updateVenta)
     .delete('/api/v1/ventas/:id', controladorVentas.deleteVenta)
