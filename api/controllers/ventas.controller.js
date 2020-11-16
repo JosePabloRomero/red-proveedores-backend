@@ -9,14 +9,57 @@ const getVentas = async (request, response) => {
       ventas.id AS id_venta,
       ventas.fecha AS fecha_venta,
       estados_venta.nombre AS Estado,
+      estados_venta.id AS id_estado,
+      usuarios.id AS id_usuario,
       usuarios.nombre AS Nombre_Cliente, 
       usuarios.apellido AS Apellido_Cliente 
       FROM estados_venta 
       INNER JOIN ventas ON ventas.id_estado = estados_venta.id 
       INNER JOIN proveedores ON proveedores.id = ventas.id_proveedor 
       INNER JOIN usuarios ON usuarios.id = ventas.id_usuario 
-      WHERE proveedores.id = $1
-      GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido, id_venta, fecha_venta;`;    
+      WHERE proveedores.id = $1 and estados_venta.id <> 3
+      GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido, id_venta, fecha_venta, estados_venta.id, usuarios.id;`;    
+    let values = [
+      id
+    ];    
+    let responseDB = await _servicePg.execute(sql, values);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Ventas Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo venta.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+
+const getVentasEnCola = async (request, response) => {
+  let id = request.params.id;
+  try {
+    const sql =
+      `SELECT
+      ventas.id AS id_venta,
+      ventas.fecha AS fecha_venta,
+      estados_venta.nombre AS Estado,
+      estados_venta.id AS id_estado,
+      usuarios.id AS id_usuario,
+      usuarios.nombre AS Nombre_Cliente, 
+      usuarios.apellido AS Apellido_Cliente 
+      FROM estados_venta 
+      INNER JOIN ventas ON ventas.id_estado = estados_venta.id 
+      INNER JOIN proveedores ON proveedores.id = ventas.id_proveedor 
+      INNER JOIN usuarios ON usuarios.id = ventas.id_usuario 
+      WHERE proveedores.id = $1 and estados_venta.id = 3
+      GROUP BY estados_venta.nombre, proveedores.nombre, proveedores.apellido, usuarios.nombre, usuarios.apellido, id_venta, fecha_venta, estados_venta.id, usuarios.id;`;    
     let values = [
       id
     ];    
@@ -128,4 +171,4 @@ const deleteVenta = async (request, response) => {
   }
 };
 
-module.exports = { getVentas, saveVenta, updateVenta, deleteVenta };
+module.exports = { getVentas, saveVenta, updateVenta, deleteVenta, getVentasEnCola };

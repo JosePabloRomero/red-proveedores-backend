@@ -12,7 +12,7 @@ const login = async (request, response) => {
     responseJSON.ok = true;
     try {
         let id = request.params.id
-        let sql = "SELECT nombre, apellido, email, descripcion, direccion, contacto "
+        let sql = "SELECT nombre, apellido, email, descripcion, direccion, contacto, id "
         switch (id) {
             //Caso 1: rol: usuario
             case "1":
@@ -26,7 +26,6 @@ const login = async (request, response) => {
             case "3":
                 sql += "FROM administradores u WHERE u.email=$1 and clave=md5($2)";
                 break;
-
             default:
                 break;
         }
@@ -41,9 +40,9 @@ const login = async (request, response) => {
             responseJSON.message = 'El usuario se encuentra en la base de datos';
             responseJSON.info = jwt.createToken(user);
             response.send(responseJSON);
-        } else {            
+        } else { 
             responseJSON.ok = false;
-            responseJSON.message = 'Error al obtener el usuario';
+            responseJSON.message = 'El usuario no se encuentra en la base de datos';
             responseJSON.info = [];
             response.status(404).send(responseJSON);
         }
