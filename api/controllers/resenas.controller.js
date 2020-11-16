@@ -110,5 +110,70 @@ const deleteResenas = async (request, response) => {
     response.status(400).send(responseJSON);
   }
 };
+const resenas = async (request, response) => {
+  let id = request.params.id;
+  try {
+    const sql =
+      `select usuarios.id , usuarios.nombre , usuarios.apellido , usuarios.email , usuarios.contacto, resenas.comentario 
+      from usuarios inner join ventas 
+      on ventas.id_usuario = usuarios.id 
+      inner join resenas 
+      on resenas.id_venta = ventas.id 
+      inner join proveedores 
+      on proveedores.id = ventas.id_proveedor
+      where proveedores.id = $1;`;   
 
-module.exports = { getResenas, saveResenas, updateResenas, deleteResenas };
+    let values = [
+      id
+    ];    
+    let responseDB = await _servicePg.execute(sql, values);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Reseñas Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo la reseña.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+const promedio = async (request, response) => {
+  let id = request.params.id;
+  try {
+    const sql =
+      `select round(avg(resenas.nivel_satisfaccion)) as PromedioNivel from resenas 
+      inner join ventas on ventas.id = resenas.id_venta 
+      inner join proveedores on proveedores.id = ventas.id_proveedor
+      where proveedores.id = $1;`;   
+
+    let values = [
+      id
+    ];    
+    let responseDB = await _servicePg.execute(sql, values);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Promedio Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo el promedio.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio };
