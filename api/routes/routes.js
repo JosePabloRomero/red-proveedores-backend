@@ -95,10 +95,12 @@ router
     .get('/api/v1/categorias_proveedor/:id', controladorCategorias_Proveedores.categorias_proveedores)
     //Productos
     .get('/api/v1/Productos', controladorProductos.getProductos)
+    .get('/api/v1/Productos_Por_Proveedor/:id', controladorProductos.getProductosPorProveedor)
     .post('/api/v1/Productos', controladorProductos.saveProductos)
     .put('/api/v1/Productos/:id', controladorProductos.updateProductos)
     .delete('/api/v1/Productos/:id', controladorProductos.deleteProductos)
     .use('/', controladorAutenticacion.notFound);
+    
 
 
 module.exports = router;
