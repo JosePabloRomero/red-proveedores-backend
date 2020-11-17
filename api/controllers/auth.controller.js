@@ -12,19 +12,19 @@ const login = async (request, response) => {
     responseJSON.ok = true;
     try {
         let id = request.params.id
-        let sql = "SELECT nombre, apellido, email, descripcion, direccion, contacto, id "
+        let sql = "SELECT nombre, apellido, email, id"
         switch (id) {
             //Caso 1: rol: usuario
             case "1":
-                sql += "FROM usuarios u WHERE u.email=$1 and clave=md5($2)";
+                sql += ", contacto FROM usuarios WHERE email=$1 and clave=md5($2)";
                 break;
             //Caso 2: rol: proveedor
             case "2":
-                sql += "FROM proveedores u WHERE u.email=$1 and clave=md5($2)";
+                sql += ", contacto, direccion, descripcion FROM proveedores WHERE email=$1 and clave=md5($2)";
                 break;
             //Caso 3: rol: administrador
             case "3":
-                sql += "FROM administradores u WHERE u.email=$1 and clave=md5($2)";
+                sql += " FROM administradores WHERE email=$1 and clave=md5($2)";
                 break;
             default:
                 break;
