@@ -93,6 +93,7 @@ router
     .get('/api/v1/resenas', controladorResenas.getResenas)
     .post('/api/v1/resenas', controladorResenas.saveResenas)
     .put('/api/v1/resenas/:id', controladorResenas.updateResenas)
+    .put('/api/v1/update_estado_resena/:id', controladorResenas.updateEstadoResena)
     .delete('/api/v1/resenas/:id', controladorResenas.deleteResenas)
     .get('/api/v1/resenas/:id', controladorResenas.resenas)
     .get('/api/v1/resenas_promedio/:id', controladorResenas.promedio)
