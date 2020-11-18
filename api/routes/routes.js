@@ -79,7 +79,6 @@ router
     .put('/api/v1/catalogos/catalogosPDF', controladorCatalogos.saveCatalogoPDF)
     .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
     .delete('/api/v1/catalogos/:id', controladorCatalogos.deleteCatalogo)
-    .get('/api/v1/catalogo_proveedor/:id', controladorCatalogos.catalogoProveedor)
 
     //Estados
     .get('/api/v1/estados', controladorEstados.getEstados)
