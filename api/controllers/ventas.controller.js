@@ -8,11 +8,11 @@ const getVentas = async (request, response) => {
       `SELECT
       ventas.id AS id_venta,
       ventas.fecha AS fecha_venta,
-      estados_venta.nombre AS Estado,
+      estados_venta.nombre AS estado,
       estados_venta.id AS id_estado,
       usuarios.id AS id_usuario,
-      usuarios.nombre AS Nombre_Cliente, 
-      usuarios.apellido AS Apellido_Cliente 
+      usuarios.nombre AS nombre_cliente, 
+      usuarios.apellido AS apellido_cliente 
       FROM estados_venta 
       INNER JOIN ventas ON ventas.id_estado = estados_venta.id 
       INNER JOIN proveedores ON proveedores.id = ventas.id_proveedor 
@@ -49,11 +49,11 @@ const getVentasEnCola = async (request, response) => {
       `SELECT
       ventas.id AS id_venta,
       ventas.fecha AS fecha_venta,
-      estados_venta.nombre AS Estado,
+      estados_venta.nombre AS estado,
       estados_venta.id AS id_estado,
       usuarios.id AS id_usuario,
-      usuarios.nombre AS Nombre_Cliente, 
-      usuarios.apellido AS Apellido_Cliente 
+      usuarios.nombre AS nombre_cliente, 
+      usuarios.apellido AS apellido_cliente 
       FROM estados_venta 
       INNER JOIN ventas ON ventas.id_estado = estados_venta.id 
       INNER JOIN proveedores ON proveedores.id = ventas.id_proveedor 
