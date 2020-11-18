@@ -28,14 +28,15 @@ const getResenas = async (request, response) => {
 const saveResenas = async (request, response) => {
   try {
     let sql = `INSERT INTO public.resenas
-    (nivel_satisfaccion, comentario, id_venta)
-    VALUES($1, $2, $3);
+    (nivel_satisfaccion, comentario, id_venta, id_estado)
+    VALUES($1, $2, $3, $4);
     `
     let body = request.body;
     let values = [
       body.nivel_satisfaccion,
       body.comentario,
       body.id_venta,
+      body.id_estado
     ];
     await _servicePg.execute(sql, values);
     let responseJSON = {};
