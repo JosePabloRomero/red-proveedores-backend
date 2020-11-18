@@ -69,14 +69,18 @@ const methods = {
             let body = request.body;
             let values = [body.identificacion, body.tipo_id, body.nombre, body.apellido, body.email, body.clave, body.contacto, body.direccion, body.descripcion];
             await _ServicePg.execute(sql, values);
+            let sql2 = `SELECT public.proveedores.id FROM public.proveedores where public.proveedores.identificacion=$1 and public.proveedores.tipo_id=$2;`
+            let values2 = [body.identificacion, body.tipo_id]
+            let responseDB = await _ServicePg.execute(sql2, values2);
+            let rows = responseDB.rows
             let responseJSON = {};
             responseJSON.ok = true;
-            responseJSON.message = 'Proveedor creado';
-            responseJSON.info = body;
+            responseJSON.message = 'proveedor agregado';
+            responseJSON.info = rows;
             response.send(responseJSON);
         } catch (error) {
-            console.log(error)
             let responseJSON = {};
+            console.log(error)
             responseJSON.ok = false;
             responseJSON.message = "Error al guardar el proveedor"
             responseJSON.info = error

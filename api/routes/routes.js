@@ -27,8 +27,10 @@ router.get('/api/v1', (request, response) => {
 router
     //Rutas que no necesitan de estar ingresado
     .get('/api/v1/identificaciones', controladorProveedores.getIdentificaciones)    
+    .get('/api/v1/categorias', controladorCategorias.getCategorias)
     .post('/api/v1/proveedores', controladorProveedores.saveProveedor)
     .post('/api/v1/usuarios', controladorUsuarios.saveUsuario)
+    .post('/api/v1/categorias_proveedores', controladorCategorias_Proveedores.saveCategoriaProveedor)    
     .use("/static" , express.static(RUTA_DOCS)) 
 
     //Login
@@ -64,8 +66,7 @@ router
     .put('/api/v1/ventas/:id', controladorVentas.updateVenta)
     .delete('/api/v1/ventas/:id', controladorVentas.deleteVenta)
 
-    //Categorias
-    .get('/api/v1/categorias', controladorCategorias.getCategorias)
+    //Categorias    
     .post('/api/v1/categorias', controladorCategorias.saveCategoria)
     .put('/api/v1/categorias/:id', controladorCategorias.updateCategoria)
     .delete('/api/v1/categorias/:id', controladorCategorias.deleteCategoria)
