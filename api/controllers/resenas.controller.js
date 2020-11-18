@@ -61,12 +61,35 @@ const updateResenas = async (request, response) => {
   try {
     let id = request.params.id;
     let sql =
-      "UPDATE public.resenas SET nivel_satisfaccion=$1, comentario=$2, id_venta=$3 WHERE id=$4;";
+      "UPDATE public.resenas SET nivel_satisfaccion=$1, comentario=$2 WHERE id=$3;";
     let body = request.body;
     let values = [
         body.nivel_satisfaccion,
         body.comentario,
-        body.id_venta,
+        id,
+    ];
+    await _servicePg.execute(sql, values);
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Reseña actualizada";
+    responseJSON.info = body;
+    response.send(responseJSON);
+  } catch (error) {
+    let responseJSON = {};
+    console.log(error)
+    responseJSON.ok = false;
+    responseJSON.message = "Error actualizando la reseña.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+const updateEstadoResena = async (request, response) => {
+  try {
+    let id = request.params.id;
+    let sql =
+      "UPDATE public.resenas SET id_estado=2 WHERE id=$1;";
+    let body = request.body;
+    let values = [
         id,
     ];
     await _servicePg.execute(sql, values);
@@ -182,7 +205,7 @@ const getConsultar_Resena_Por_Cliente = async (request, response) => {
   try {
     let id = request.params.id;
     const sql =
-      `select proveedores.nombre , proveedores.apellido , estados_venta.nombre  as nombre_del_estado
+      `select resenas.id, proveedores.nombre , proveedores.apellido , estados_venta.nombre  as nombre_del_estado
       from proveedores 
       inner join ventas 
       on proveedores.id = ventas.id_proveedor
@@ -224,11 +247,7 @@ const getSatisfaccion_Cliente = async (request, response) => {
     const sql =
       `select resenas.nivel_satisfaccion , resenas.comentario 
       from resenas 
-      inner join ventas 
-      on resenas.id_venta = ventas.id
-      inner join usuarios 
-      on usuarios.id = ventas.id_usuario
-      where usuarios.id = $1 ;`;
+      where resenas.id = $1;`;
     let values = [
       id
     ];
@@ -253,4 +272,4 @@ const getSatisfaccion_Cliente = async (request, response) => {
 };
 
 
-module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio , getConsultar_Resena_Por_Cliente , getSatisfaccion_Cliente};
+module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio , getConsultar_Resena_Por_Cliente , getSatisfaccion_Cliente , updateEstadoResena};
