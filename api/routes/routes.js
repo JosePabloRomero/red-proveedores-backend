@@ -101,6 +101,8 @@ router
 
     //Categorias_Productos
     .get('/api/v1/categorias_productos', controladorCategorias_Productos.getCategorias_productos)
+    .post('/api/v1/categorias_productos', controladorCategorias_Productos.agregarCategoriaProducto)
+    .delete('/api/v1/categorias_productos/', controladorCategorias_Productos.eliminarCategoriaProducto)
 
 
     //Categorias_Proveedores
@@ -110,6 +112,7 @@ router
     //Productos
     .get('/api/v1/Productos', controladorProductos.getProductos)
     .get('/api/v1/productos_por_proveedor/:id', controladorProductos.getProductosPorProveedor)
+    .get('/api/v1/productos/:id', controladorProductos.getProductoEspecifico)
     .post('/api/v1/Productos', controladorProductos.saveProductos)
     .put('/api/v1/Productos/:id', controladorProductos.updateProductos)
     .delete('/api/v1/Productos/:id', controladorProductos.deleteProductos)
