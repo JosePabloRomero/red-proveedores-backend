@@ -217,4 +217,40 @@ const getConsultar_Resena_Por_Cliente = async (request, response) => {
   }
 };
 
-module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio , getConsultar_Resena_Por_Cliente };
+const getSatisfaccion_Cliente = async (request, response) => {
+  try {
+
+    let id = request.params.id;
+    const sql =
+      `select resenas.nivel_satisfaccion , resenas.comentario 
+      from resenas 
+      inner join ventas 
+      on resenas.id_venta = ventas.id
+      inner join usuarios 
+      on usuarios.id = ventas.id_usuario
+      where usuarios.id = $1 ;`;
+    let values = [
+      id
+    ];
+    let responseDB = await _servicePg.execute(sql , values);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;     
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Reseñas Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo la reseña.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+
+
+module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio , getConsultar_Resena_Por_Cliente , getSatisfaccion_Cliente};

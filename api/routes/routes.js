@@ -97,6 +97,7 @@ router
     .get('/api/v1/resenas/:id', controladorResenas.resenas)
     .get('/api/v1/resenas_promedio/:id', controladorResenas.promedio)
     .get('/api/v1/resenas_por_cliente/:id', controladorResenas.getConsultar_Resena_Por_Cliente)
+    .get('/api/v1/satisfaccion_cliente/:id', controladorResenas.getSatisfaccion_Cliente)
 
     //Categorias_Productos
     .get('/api/v1/categorias_productos', controladorCategorias_Productos.getCategorias_productos)
