@@ -143,5 +143,30 @@ const deleteCatalogo = async (request, response) => {
     response.status(400).send(responseJSON);
   }
 };
+  const catalogoProveedor =  async (request, response) => {
+  try {
+      const sql = `select * from catalogos where id_proveedor = $1;`;
+      let id = request.params.id;
+      let values = [id];
+      let responseDB = await _ServicePg.execute(sql, values);
+      let rowCount = responseDB.rowCount;
+      let rows = responseDB.rows;
 
-module.exports = { getCatalogos, saveCatalogo, saveCatalogoPDF, updateCatalogo, deleteCatalogo };
+      let responseJSON = {};
+      responseJSON.ok = true;
+      responseJSON.message = "Catálogo encontrado";
+      responseJSON.info = rows;
+      responseJSON.metainfo = { total: rowCount };
+      response.send(responseJSON);
+  } catch (error) {
+      console.log(error);
+      let responseJSON = {};
+      responseJSON.ok = false;
+      responseJSON.message = "Error al buscar el catálogo"
+      responseJSON.info = error
+      response.status(400).send(responseJSON);
+  }
+}
+
+
+module.exports = { getCatalogos, saveCatalogo, saveCatalogoPDF, updateCatalogo, deleteCatalogo, catalogoProveedor };

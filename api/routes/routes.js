@@ -48,6 +48,7 @@ router
     .put('/api/v1/proveedores/:id', controladorProveedores.updateProveedor)
     .delete('/api/v1/proveedores/:id', controladorProveedores.deleteProveedor)
     .get('/api/v1/proveedor_especifico/', controladorProveedores.buscarProveedorEspecifico)
+    .get('/api/v1/proveedor_especifico_id/:id', controladorProveedores.buscarProveedorEspecificoPorId)
     .get('/api/v1/proveedores_categoria/:id', controladorProveedores.buscarProveedorPorCategoria)
 
     //Administradores
@@ -76,6 +77,7 @@ router
     .put('/api/v1/catalogos/catalogosPDF', controladorCatalogos.saveCatalogoPDF)
     .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
     .delete('/api/v1/catalogos/:id', controladorCatalogos.deleteCatalogo)
+    .get('/api/v1/catalogo_proveedor/:id', controladorCatalogos.catalogoProveedor)
 
     //Estados
     .get('/api/v1/estados', controladorEstados.getEstados)
