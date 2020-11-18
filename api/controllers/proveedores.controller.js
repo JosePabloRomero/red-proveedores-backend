@@ -178,7 +178,7 @@ const methods = {
     async buscarProveedorPorCategoria(request, response) {
         try {
             let id_categoria = request.params.id;
-            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido , proveedores.contacto , proveedores.email
+            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido , proveedores.contacto , proveedores.email, proveedores.direccion
             from proveedores inner join categorias_proveedores 
             on proveedores.id = categorias_proveedores.id_proveedor
             inner join categorias on categorias.id = categorias_proveedores.id_categoria
