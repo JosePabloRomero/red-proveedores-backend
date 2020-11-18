@@ -4,13 +4,40 @@ const _servicePg = new ServicePostgres();
 const getCatalogos = async (request, response) => {
   try {
     const sql =
-      `SELECT catalogos.id AS ID_Catalogo,
-      proveedores.nombre AS Nombre_Proveedor,
-      proveedores.apellido AS Apellido_Proveedor
+      `SELECT catalogos.id AS id_catalogo,
+      proveedores.nombre AS nombre_proveedor,
+      proveedores.apellido AS apellido_proveedor,
+      proveedores.id AS id_proveedor
       FROM proveedores
       INNER JOIN catalogos ON proveedores.id = catalogos.id_proveedor
-      GROUP BY catalogos.id, proveedores.nombre, proveedores.apellido;`;
+      GROUP BY catalogos.id, proveedores.nombre, proveedores.apellido, proveedores.id;`;
     let responseDB = await _servicePg.execute(sql);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Catálogos Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo los catálogos.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+
+const getCatalogoProveedor = async (request, response) => {
+  try {
+    let id = request.params.id;
+    const sql =
+      `select catalogos.id as id_catalogo, catalogos.id_proveedor as id_proveedor from public.catalogos where catalogos.id_proveedor = $1`;
+    let values = [id]
+    let responseDB = await _servicePg.execute(sql, values);
     let rowCount = responseDB.rowCount;
     let rows = responseDB.rows;
 
@@ -144,4 +171,4 @@ const deleteCatalogo = async (request, response) => {
   }
 };
 
-module.exports = { getCatalogos, saveCatalogo, saveCatalogoPDF, updateCatalogo, deleteCatalogo };
+module.exports = { getCatalogos, saveCatalogo, saveCatalogoPDF, updateCatalogo, deleteCatalogo, getCatalogoProveedor };

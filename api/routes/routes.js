@@ -73,6 +73,7 @@ router
 
     //Catalogos
     .get('/api/v1/catalogos', controladorCatalogos.getCatalogos)
+    .get('/api/v1/catalogos/:id', controladorCatalogos.getCatalogoProveedor)
     .post('/api/v1/catalogos', controladorCatalogos.saveCatalogo)
     .put('/api/v1/catalogos/catalogosPDF', controladorCatalogos.saveCatalogoPDF)
     .put('/api/v1/catalogos/:id', controladorCatalogos.updateCatalogo)
