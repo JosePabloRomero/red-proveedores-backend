@@ -59,5 +59,26 @@ const categorias_proveedores = async (request, response) => {
     response.status(400).send(responseJSON);
   }
 };
+const saveCategoriaProveedor = async (request, response) => {
+  try {
+    let sql = `INSERT INTO public.categorias_proveedores ( id_categoria , id_proveedor) 
+      VALUES($1, $2);`
+    let body = request.body;
+    let values = [body.id_categoria, body.id_proveedor];
+    await _servicePg.execute(sql, values);
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = 'Categoria correctamente agregada al proveedor';
+    responseJSON.info = body;
+    response.send(responseJSON);
+  } catch (error) {
+    let responseJSON = {};
+    console.log(error)
+    responseJSON.ok = false;
+    responseJSON.message = "Error al agregar la categoria"
+    responseJSON.info = error
+    response.status(400).send(responseJSON);
+  }
+};
 
-module.exports = { getCategorias_proveedores, categorias_proveedores};
+module.exports = { getCategorias_proveedores, categorias_proveedores, saveCategoriaProveedor};
