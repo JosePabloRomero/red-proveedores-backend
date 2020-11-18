@@ -173,6 +173,32 @@ const methods = {
             response.status(400).send(responseJSON);
         }
     },
+    async buscarProveedorEspecificoPorId(request, response) {
+        try {
+
+            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido, proveedores.descripcion, proveedores.direccion, proveedores.contacto
+            from proveedores where proveedores.id = $1;`;
+            let id = request.params.id;
+            let values = [id];
+            let responseDB = await _ServicePg.execute(sql, values);
+            let rowCount = responseDB.rowCount;
+            let rows = responseDB.rows;
+
+            let responseJSON = {};
+            responseJSON.ok = true;
+            responseJSON.message = "Proveedor encontrado";
+            responseJSON.info = rows;
+            responseJSON.metainfo = { total: rowCount };
+            response.send(responseJSON);
+        } catch (error) {
+            console.log(error);
+            let responseJSON = {};
+            responseJSON.ok = false;
+            responseJSON.message = "Error al buscar el proveedor"
+            responseJSON.info = error
+            response.status(400).send(responseJSON);
+        }
+    },
 
     /**
    * Buscar proveedores por categoria 
