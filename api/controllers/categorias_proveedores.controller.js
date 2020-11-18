@@ -28,7 +28,9 @@ const categorias_proveedores = async (request, response) => {
   let id = request.params.id;
   try {
     const sql =
-      `select categorias.nombre as nombre_de_la_categoria  from categorias
+      `select categorias.nombre as nombre_de_la_categoria,
+      categorias.id as id_categoria
+      from categorias
       inner join categorias_proveedores
       on 
       categorias_proveedores.id_categoria = categorias.id 
