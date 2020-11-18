@@ -145,7 +145,7 @@ const methods = {
     async buscarProveedorEspecifico(request, response) {
         try {
 
-            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido
+            const sql = `select proveedores.id , proveedores.nombre , proveedores.apellido, proveedores.descripcion, proveedores.direccion, proveedores.contacto
             from proveedores where proveedores.nombre = $1 and proveedores.apellido = $2 ;`;
             let nombre = request.query.nombre;
             let apellido = request.query.apellido;

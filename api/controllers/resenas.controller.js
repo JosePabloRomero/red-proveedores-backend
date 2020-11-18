@@ -176,4 +176,45 @@ const promedio = async (request, response) => {
     response.status(400).send(responseJSON);
   }
 };
-module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio };
+
+
+const getConsultar_Resena_Por_Cliente = async (request, response) => {
+  try {
+    let id = request.params.id;
+    const sql =
+      `select proveedores.nombre , proveedores.apellido , estados_venta.nombre  as nombre_del_estado
+      from proveedores 
+      inner join ventas 
+      on proveedores.id = ventas.id_proveedor
+      inner join resenas 
+      on resenas.id_venta = ventas.id
+      inner join estados_venta
+      on estados_venta.id = resenas.id_estado
+      inner join usuarios 
+      on usuarios.id = ventas.id_usuario
+      where usuarios.id = $1 and estados_venta.id = 3; `;
+    
+    let values = [
+      id
+    ]; 
+    let responseDB = await _servicePg.execute(sql , values);
+    let rowCount = responseDB.rowCount;
+    let rows = responseDB.rows;     
+
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Reseñas Ok";
+    responseJSON.info = rows;
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error obteniendo la reseña.";
+    responseJSON.info = error;
+    response.status(400).send(responseJSON);
+  }
+};
+
+module.exports = { getResenas, saveResenas, updateResenas, deleteResenas, resenas, promedio , getConsultar_Resena_Por_Cliente };

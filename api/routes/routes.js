@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require(`path`)
 const controladorUsuarios = require('../controllers/usuarios.controller');
 const controladorProveedores = require('../controllers/proveedores.controller');
 const controladorAdministradores = require('../controllers/administradores.controller');
@@ -14,6 +15,10 @@ const controladorResenas = require('../controllers/resenas.controller');
 const controladorCategorias_Productos = require('../controllers/categorias_productos.controller');
 const controladorCategorias_Proveedores = require('../controllers/categorias_proveedores.controller');
 
+
+const RUTA_DOCS = path.join(__dirname , "../../docs") ;
+console.log("DIRNAME " , RUTA_DOCS);
+
 router.get('/api/v1', (request, response) => {
     response.send("Hola Mundo");
 });
@@ -24,6 +29,8 @@ router
     .get('/api/v1/identificaciones', controladorProveedores.getIdentificaciones)    
     .post('/api/v1/proveedores', controladorProveedores.saveProveedor)
     .post('/api/v1/usuarios', controladorUsuarios.saveUsuario)
+    .use("/static" , express.static(RUTA_DOCS)) 
+
     //Login
     .post('/api/v1/login/:id', controladorAutenticacion.login)
     .use('/', controladorAutenticacion.middleware)
@@ -89,6 +96,7 @@ router
     .delete('/api/v1/resenas/:id', controladorResenas.deleteResenas)
     .get('/api/v1/resenas/:id', controladorResenas.resenas)
     .get('/api/v1/resenas_promedio/:id', controladorResenas.promedio)
+    .get('/api/v1/resenas_por_cliente/:id', controladorResenas.getConsultar_Resena_Por_Cliente)
 
     //Categorias_Productos
     .get('/api/v1/categorias_productos', controladorCategorias_Productos.getCategorias_productos)
