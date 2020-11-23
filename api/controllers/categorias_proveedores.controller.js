@@ -29,7 +29,7 @@ const categorias_proveedores = async (request, response) => {
   try {
     const sql =
       `select categorias.nombre as nombre_de_la_categoria,
-      categorias.id as id_categoria
+      categorias.id as id_categoria, categorias.ruta_img
       from categorias
       inner join categorias_proveedores
       on 

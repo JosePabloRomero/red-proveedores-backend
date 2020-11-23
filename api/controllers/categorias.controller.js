@@ -27,11 +27,12 @@ const getCategorias = async (request, response) => {
 const saveCategoria = async (request, response) => {
   try {
     let sql =
-      "INSERT INTO public.categorias (nombre)";
-    sql += " VALUES($1);";
+      "INSERT INTO public.categorias (nombre, ruta_img)";
+    sql += " VALUES($1, $2);";
     let body = request.body;
     let values = [
       body.nombre,
+      body.ruta_img
     ];
     await _servicePg.execute(sql, values);
     let responseJSON = {};
@@ -56,10 +57,11 @@ const updateCategoria = async (request, response) => {
   try {
     let id = request.params.id;
     let sql =
-      "UPDATE public.categorias SET nombre=$1 where id=$2;";
+      "UPDATE public.categorias SET nombre=$1, ruta_img=$2 where id=$3;";
     let body = request.body;
     let values = [
       body.nombre,
+      body.ruta_img,
       id,
     ];
     await _servicePg.execute(sql, values);
