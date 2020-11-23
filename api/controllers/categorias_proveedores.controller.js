@@ -82,5 +82,29 @@ const saveCategoriaProveedor = async (request, response) => {
     response.status(400).send(responseJSON);
   }
 };
+const eliminarCategoriaProveedor= async (request, response) => {
+  try {
 
-module.exports = { getCategorias_proveedores, categorias_proveedores, saveCategoriaProveedor};
+    const sql = `DELETE FROM categorias_proveedores WHERE id_categoria=$1 and id_proveedor=$2;`;
+    let id_categoria = parseInt(request.query.id_categoria) ;
+    let id_proveedor = parseInt(request.query.id_proveedor);
+    let values = [id_categoria, id_proveedor];
+    let responseDB = await _servicePg.execute(sql, values);
+    let rowCount = responseDB.rowCount;
+    let responseJSON = {};
+    responseJSON.ok = true;
+    responseJSON.message = "Categoria del proveedor eliminada";
+    responseJSON.info = [];
+    responseJSON.metainfo = { total: rowCount };
+    response.send(responseJSON);
+  } catch (error) {
+    console.log(error);
+    let responseJSON = {};
+    responseJSON.ok = false;
+    responseJSON.message = "Error al eliminar la categoria del proveedor"
+    responseJSON.info = error
+    response.status(400).send(responseJSON);
+  }
+};
+
+module.exports = { getCategorias_proveedores, categorias_proveedores, saveCategoriaProveedor, eliminarCategoriaProveedor};
